@@ -1,25 +1,23 @@
 package com.udacity.gradle.builditbigger;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
-import com.example.JokeMain;
 import com.example.prateek.androidlibrary.JokeActivity;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity  implements EndpointsAsyncTask.EndpointResponseInterface{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        new EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Manfred"));
+
     }
 
 
@@ -46,11 +44,25 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void tellJoke(View view) {
-        JokeMain jokeMain = new JokeMain();
+
+        new EndpointsAsyncTask(MainActivity.this).execute();
+        /*JokeMain jokeMain = new JokeMain();
         String jokes = jokeMain.getJoke();
         Intent intent = new Intent(this, JokeActivity.class);
         intent.putExtra(JokeActivity.JOKE_KEY,jokes);
-        startActivity(intent);
+        startActivity(intent);*/
+    }
+
+    @Override
+    public void onResponse(boolean isSuccess, String result){
+        if(isSuccess){
+            Intent intent = new Intent(this, JokeActivity.class);
+            intent.putExtra("Display",result);
+            startActivity(intent);
+        }
+        else {
+            Toast.makeText(this, "Error" + result, Toast.LENGTH_LONG).show();
+        }
     }
 
 
