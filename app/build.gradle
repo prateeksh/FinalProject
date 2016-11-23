@@ -20,11 +20,11 @@ android {
         }
     }
 
-    productFlavors{
-        free{
+    productFlavors {
+        free {
             applicationId "com.udacity.gradle.builditbigger.free"
         }
-        paid{
+        paid {
             applicationId "com.udacity.gradle.builditbigger.paid"
         }
     }
@@ -35,9 +35,10 @@ dependencies {
     // Added for AdMob
     compile project(":javajokes")
     compile project(":androidlibrary")
+    compile project(path: ':backend', configuration: 'android-endpoints')
+
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.google.android.gms:play-services-ads:9.6.1'
     compile 'com.google.code.findbugs:jsr305:2.0.1'
-    compile project(path: ':backend', configuration: 'android-endpoints')
-
+    compile 'com.android.support:design:24.2.1'
 }
