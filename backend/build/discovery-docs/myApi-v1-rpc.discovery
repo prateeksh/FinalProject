@@ -1,6 +1,6 @@
 {
  "kind": "discovery#rpcDescription",
- "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/4twzsAEdZWd87vPp2K9j4W2Li2M\"",
+ "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/xGCsWh9yw-6rsKcON8_ad-DVjMY\"",
  "discoveryVersion": "v1",
  "id": "myApi:v1",
  "name": "myApi",
@@ -13,8 +13,8 @@
   "x32": "http://www.google.com/images/icons/product/search-32.gif"
  },
  "protocol": "rpc",
- "rootUrl": "https://myApplicationId.appspot.com/_ah/api/",
- "rpcUrl": "https://myApplicationId.appspot.com/_ah/api/rpc",
+ "rootUrl": "https://builditbigger-149110.appspot.com/_ah/api/",
+ "rpcUrl": "https://builditbigger-149110.appspot.com/_ah/api/rpc",
  "rpcPath": "/_ah/api/rpc",
  "parameters": {
   "alt": {
@@ -71,15 +71,6 @@
   }
  },
  "schemas": {
-  "MyBean": {
-   "id": "MyBean",
-   "type": "object",
-   "properties": {
-    "data": {
-     "type": "string"
-    }
-   }
-  },
   "MyJoke": {
    "id": "MyJoke",
    "type": "object",
@@ -95,24 +86,6 @@
    "id": "myApi.displayJoke",
    "returns": {
     "$ref": "MyJoke"
-   },
-   "scopes": [
-    "https://www.googleapis.com/auth/userinfo.email"
-   ]
-  },
-  "myApi.sayHi": {
-   "id": "myApi.sayHi",
-   "parameters": {
-    "name": {
-     "type": "string",
-     "required": true
-    }
-   },
-   "parameterOrder": [
-    "name"
-   ],
-   "returns": {
-    "$ref": "MyBean"
    },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"

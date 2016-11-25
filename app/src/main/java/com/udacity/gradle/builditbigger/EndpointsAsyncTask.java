@@ -2,12 +2,11 @@ package com.udacity.gradle.builditbigger;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.example.prateek.myapplication.backend.myApi.MyApi;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
-import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
-import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 
 import java.io.IOException;
 
@@ -28,20 +27,26 @@ public class EndpointsAsyncTask extends AsyncTask <String, Void, String> {
     @Override
     protected String doInBackground(String... params){
      if(myApiService == null){
-         MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
+
+
+         MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
+                 .setRootUrl("https://builditbigger-149110.appspot.com/_ah/api/");
+
+        /* MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
                  new AndroidJsonFactory(), null)
-                 .setRootUrl("http://192.168.1.4:1234/_ah/api")
+                 .setRootUrl("http://10.0.2.2:1234/_ah/api")
                  .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
                      @Override
                      public void initialize(AbstractGoogleClientRequest<?> request) throws IOException {
                          request.setDisableGZipContent(true);
                      }
-                 });
+                 });*/
          myApiService = builder.build();
      }
 
         try{
             isSuccess = true;
+            Log.v("LOG" ,"My api exected");
             return myApiService.displayJoke().execute().getJoke();
         }catch (IOException e){
             isSuccess = false;
