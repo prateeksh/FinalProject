@@ -20,7 +20,7 @@ public class EndpointsAsyncTask extends AsyncTask <String, Void, String> {
     private boolean isSuccess;
     private EndpointResponseInterface responseInterface;
 
-    EndpointsAsyncTask(EndpointResponseInterface responseInterface){
+    public EndpointsAsyncTask(EndpointResponseInterface responseInterface){
         this.responseInterface = responseInterface;
     }
 
