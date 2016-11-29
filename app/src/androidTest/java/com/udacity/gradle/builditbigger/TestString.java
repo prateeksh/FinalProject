@@ -57,25 +57,6 @@ public class TestString {
     }
 
 
-   /* private final CountDownLatch mSignal = new CountDownLatch(1);
 
-    @Test
-    public void testJokeRetriever() throws Exception{
-        new EndpointsAsyncTask(this).execute();
-        try {
-            boolean success = mSignal.await(15, TimeUnit.SECONDS);
-            if (!success) {
-                Assert.fail("Test timed out, make sure the server is actually running.");
-            }
-        } catch (InterruptedException e) {
-            Assert.fail();
-        }
-    }
-
-    @Override
-    public void onResponse(boolean isSuccess, String result) {
-        Assert.assertTrue(isSuccess && result != null && result.length() > 0);
-        mSignal.countDown();
-    }*/
 }
 
