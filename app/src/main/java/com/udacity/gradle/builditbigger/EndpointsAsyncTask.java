@@ -3,6 +3,8 @@ package com.udacity.gradle.builditbigger;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.example.prateek.myapplication.backend.myApi.MyApi;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -19,6 +21,8 @@ public class EndpointsAsyncTask extends AsyncTask <String, Void, String> {
     private Context context;
     private boolean isSuccess;
     private EndpointResponseInterface responseInterface;
+    ProgressBar progressBar;
+    View view;
 
     public EndpointsAsyncTask(EndpointResponseInterface responseInterface){
         this.responseInterface = responseInterface;
@@ -26,6 +30,7 @@ public class EndpointsAsyncTask extends AsyncTask <String, Void, String> {
 
     @Override
     protected String doInBackground(String... params){
+
      if(myApiService == null){
 
 
