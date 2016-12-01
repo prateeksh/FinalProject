@@ -3,8 +3,6 @@ package com.udacity.gradle.builditbigger;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.view.View;
-import android.widget.ProgressBar;
 
 import com.example.prateek.myapplication.backend.myApi.MyApi;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -17,15 +15,13 @@ import java.io.IOException;
  */
 
 public class EndpointsAsyncTask extends AsyncTask <String, Void, String> {
+
     private static MyApi myApiService = null;
     private Context context;
-    private boolean isSuccess;
-    private EndpointResponseInterface responseInterface;
-    ProgressBar progressBar;
-    View view;
+    public AsyncResponse mDelegate;
 
-    public EndpointsAsyncTask(EndpointResponseInterface responseInterface){
-        this.responseInterface = responseInterface;
+    public EndpointsAsyncTask(AsyncResponse mDelegate){
+        this.mDelegate = mDelegate;
     }
 
     @Override
@@ -33,9 +29,10 @@ public class EndpointsAsyncTask extends AsyncTask <String, Void, String> {
 
      if(myApiService == null){
 
-
+        //To run on a physical device
          MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
                  .setRootUrl("https://builditbigger-149110.appspot.com/_ah/api/");
+
 
         /* MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
                  new AndroidJsonFactory(), null)
@@ -50,22 +47,22 @@ public class EndpointsAsyncTask extends AsyncTask <String, Void, String> {
      }
 
         try{
-            isSuccess = true;
+
             Log.v("LOG" ,"My api exected");
             return myApiService.displayJoke().execute().getJoke();
         }catch (IOException e){
-            isSuccess = false;
+
             return e.getMessage();
         }
     }
 
     @Override
     protected void onPostExecute(String result){
-        responseInterface.onResponse(isSuccess, result);
+        mDelegate.onResponse(result);
     }
 
 
-    public interface EndpointResponseInterface{
-        void onResponse(boolean isSuccess, String result);
+    public interface AsyncResponse{
+        void onResponse(String result);
     }
 }

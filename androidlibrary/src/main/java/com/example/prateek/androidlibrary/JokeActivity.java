@@ -8,7 +8,7 @@ import android.view.MenuItem;
 
 public class JokeActivity extends AppCompatActivity {
 
-    public static String JOKE_KEY = "joke_key";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
